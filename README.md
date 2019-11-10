@@ -2,6 +2,8 @@
 
 We're going to learn some more advanced React concepts whilst building an accessible listbox component. We'll be following the [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.1/#listbox), which specify what behaviour a listbox should have.
 
+![](/screenshots/6.gif)
+
 ## Learning outcomes
 
 1. Modelling complex interactions with React state
