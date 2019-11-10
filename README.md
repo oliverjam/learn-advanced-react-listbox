@@ -93,3 +93,33 @@ Edit your component so that the options appear and disappear when the button is 
 ![](/screenshots/3.gif)
 
 ## Part 4
+
+We need to be able to highlight options within the listbox. This should work with both the keyboard and mouse. We'll focus on just the mouse for now.
+
+We'll need to keep track of the current index in state so we know which option is active.
+
+### Task
+
+Add an `onMouseOver` event handler to each option that updates the current active index in state. The active option should be communicated with the `aria-activedescendant` attribute on the listbox. This should be set to the ID of the active element. The active element should also have a different background colour for visual users.
+
+![](/screenshots/4.gif)
+
+## Part 5
+
+Lots of users don't or can't use a mouse. So we should also implement keyboard controls for highlighting an option.
+
+### Task
+
+When the popup is open use `React.useEffect` to add a `"keydown"` event listener to the window. This should increment the active index on `ArrowDown`, decrement it on `ArrowUp` and close the popup on `Escape`.
+
+Don't forget to remove the event listener when the popup is closed.
+
+<details>
+<summary>Click for a hint:</summary>
+
+You can use `(oldIndex + 1) % options.length)` to loop from 0 through the end of the array and back to 0.
+You can use `(oldIndex - 1 + options.length) % options.length` to loop backwards through the indexes.
+
+</details>
+
+![](/screenshots/5.gif)
