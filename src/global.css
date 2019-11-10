@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  padding: 6rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial,
+    sans-serif;
+  color: hsl(220, 10%, 30%);
+  background-color: hsl(220, 10%, 96%);
+}
+
+/* reset defaults */
+
+button {
+  display: block;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: 0;
+  background: none;
+}
+
+/* eliminate dotted inner ring in Firefox */
+button::-moz-focus-inner {
+  border: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}

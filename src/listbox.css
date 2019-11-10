@@ -1,0 +1,49 @@
+.lb {
+  position: relative;
+}
+
+.lb__label {
+  font-weight: 700;
+}
+
+.lb__button {
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 2px hsla(220, 10%, 40%, 0.1),
+    0 3px 6px hsla(220, 10%, 40%, 0.05);
+  border-radius: 0.25rem;
+  border: 1px solid hsl(220, 10%, 80%);
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+}
+
+.lb__button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px hsl(210, 60%, 60%);
+}
+
+.lb__icon {
+  margin-left: 0.5rem;
+  color: hsl(220, 10%, 50%);
+}
+
+.lb__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid hsl(220, 10%, 80%);
+  box-shadow: 0 2px 4px hsla(220, 10%, 40%, 0.4),
+    0 6px 20px hsla(220, 10%, 40%, 0.3);
+  background-color: #fff;
+}
+
+.lb__list:focus {
+  outline: 0;
+}
+
+.lb__listItem {
+  padding: 0.75rem;
+  transition: 0.1s background-color ease-out;
+}
