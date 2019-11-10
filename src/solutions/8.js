@@ -77,8 +77,8 @@ function Listbox({ options, label }) {
             const isSelected = selected === item;
             return (
               <li
-                key={"item" + index}
-                id={"item" + index}
+                key={"option" + index}
+                id={"option" + index}
                 role="option"
                 aria-selected={isSelected}
                 onMouseOver={() => setActiveIndex(index)}

@@ -54,8 +54,8 @@ function Listbox({ options, label }) {
             const isActive = activeIndex === index;
             return (
               <li
-                key={"item" + index}
-                id={"item" + index}
+                key={"option" + index}
+                id={"option" + index}
                 role="option"
                 onMouseOver={() => setActiveIndex(index)}
                 className="lb__listItem"

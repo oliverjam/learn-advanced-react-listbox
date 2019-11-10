@@ -26,7 +26,7 @@ function Listbox({ options, label }) {
         {isOpen &&
           options.map((item, index) => {
             return (
-              <li key={"item" + index} role="option" className="lb__listItem">
+              <li key={"option" + index} role="option" className="lb__listItem">
                 {item}
               </li>
             );

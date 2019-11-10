@@ -10,7 +10,7 @@ function Listbox({ options }) {
       <ul role="listbox" className="lb__list">
         {options.map((item, index) => {
           return (
-            <li key={"item" + index} role="option" className="lb__listItem">
+            <li key={"option" + index} role="option" className="lb__listItem">
               {item}
             </li>
           );
