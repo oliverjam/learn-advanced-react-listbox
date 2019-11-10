@@ -12,12 +12,12 @@ function Listbox({ options, label }) {
 
   return (
     <div className="lb">
-      <div id="lb-label" class="lb__label">
+      <div id="lb-label" className="lb__label">
         {label}
       </div>
       <button
         aria-haspopup="listbox"
-        aria-labelledBy="lb-label"
+        aria-labelledby="lb-label"
         onClick={toggleOpen}
         className="lb__button"
       >

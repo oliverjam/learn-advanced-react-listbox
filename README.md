@@ -20,12 +20,12 @@ A listbox is similar to an HTML `<select>`. We'll be reproducing as much of the 
   - The popup should be focused
 - [ ] I can use the up and down arrow keys to highlight options in the popup
   - The highlighted option is communicated to assistive technologies using `aria-activedescendant`
-- [ ] I can select an option with the return key, which should close the popup
+- [ ] I can select an option with the enter key, which should close the popup
 - [ ] The newly selected option should show in the button
 - [ ] I can close the popup with the escape key
   - The button should be focused
 
-## Part 1
+## Part 1: initial HTML structure
 
 We'll start by defining our component API. For now lets keep it simple and say that we want a `Listbox` component that takes an array of `options` to render.
 
@@ -70,7 +70,7 @@ You should see something like this when you're done:
 
 ![](/screenshots/1.png)
 
-## Part 2
+## Part 2: labelling the button
 
 Our button needs a label. Right now a user has no idea what to do with this UI element, as the button's text content is just the selected item.
 
@@ -80,7 +80,7 @@ Add a `label` prop to your component. We need to render the this string inside a
 
 ![](/screenshots/2.png)
 
-## Part 3
+## Part 3: toggling the popup
 
 Our `listbox` should be a popup that only appears when the user clicks the button. We'll need some React state to keep track of whether it's open or closed. We should also communicate whether the popup is open or not using the `aria-expanded` attribute on the button.
 
@@ -92,7 +92,7 @@ Edit your component so that the options appear and disappear when the button is 
 
 ![](/screenshots/3.gif)
 
-## Part 4
+## Part 4: highlighting an option
 
 We need to be able to highlight options within the listbox. This should work with both the keyboard and mouse. We'll focus on just the mouse for now.
 
@@ -104,7 +104,7 @@ Add an `onMouseOver` event handler to each option that updates the current activ
 
 ![](/screenshots/4.gif)
 
-## Part 5
+## Part 5: keyboard control
 
 Lots of users don't or can't use a mouse. So we should also implement keyboard controls for highlighting an option.
 
@@ -123,3 +123,64 @@ You can use `(oldIndex - 1 + options.length) % options.length` to loop backwards
 </details>
 
 ![](/screenshots/5.gif)
+
+## Part 6: selecting an option
+
+We need to be able to select an option and update the value shown in the button. This should also set the `aria-selected` property on the selected option.
+
+### Task
+
+Create some React state to track the selected option. It should default to the first thing in the `options` array.
+
+An option can be selected either by clicking on it _or_ pressing the enter key when an option is active. The popup should close when a selection happens.
+
+![](/screenshots/6.gif)
+
+## Part 7: managing focus
+
+You may have noticed an ESLint warning on the listbox. Elements that use the `aria-activedescendant` attribute must be focusable. We need to ensure that focus moves onto the listbox when it is open, and moves back to the button when it is closed.
+
+### Refs and the DOM
+
+We will use the `.focus()` method on the DOM elements to programmatically focus them. To do this we'll need access to the DOM nodes themselves.
+
+You _could_ use `document.querySelector` to access them, but that isn't very "Reacty". It would tie your logic to the DOM structure (e.g. it would break if the selector didn't match). Since we're _creating_ the elements in JSX it would be nice if we also had a way to access the underlying DOM node.
+
+Luckily React gives us a way to do this: the `ref`. This is a special property you can set on a JSX element that binds the underlying DOM node to a variable.
+
+We pair this with a special hook (`useRef`) that creates a "bucket" for us to store mutable values in. It will keep track of our ref and let us access it via the `.current property`:
+
+```jsx
+function Test() {
+  const buttonRef = React.useRef();
+  console.log(buttonRef.current); // logs the button DOM node
+  return <button ref={buttonRef}>Click</button>;
+}
+```
+
+### Task
+
+Use refs to get references to the button and listbox DOM nodes. Ensure the listbox is focused when it is open and the button is focused when it is closed. Don't forget that `<ul>`s aren't normally focusable, you'll need to make it so.
+
+<details>
+<summary>Click for a hint:</summary>
+
+It's helpful to think of `useEffect` as a way to synchronise side-effects (like DOM manipulation) with your props/state. You can use it to focus the right DOM nodes as your state updates.
+
+You can focus a DOM node you have a ref to with `nodeRef.current.focus()`.
+
+</details>
+
+![](/screenshots/7.gif)
+
+## Part 8: click anywhere to close
+
+We've got a very functional listbox implementation now. There's one more nice feature we could add to help users: clicking outside the listbox should close it.
+
+Since the listbox is always focused when open we don't have to mess around putting click handlers on the window. We can listen for the `blur` event on the listbox that will fire when it loses focus (when the user tabs/clicks somewhere else).
+
+### Task
+
+Make sure the listbox closes when the user clicks outside of it. The button should continue to receive focus when the listbox closes.
+
+![](/screenshots/7.gif)

@@ -1,13 +1,17 @@
 import React from "react";
 
 function Listbox({ options, label }) {
-  const selected = options[0];
-
+  const [selected, setSelected] = React.useState(options[0]);
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   function toggleOpen() {
     setIsOpen(wasOpen => !wasOpen);
+  }
+
+  function handleSelect(item) {
+    setIsOpen(false);
+    setSelected(item);
   }
 
   React.useEffect(() => {
@@ -21,6 +25,8 @@ function Listbox({ options, label }) {
           );
         case "Escape":
           return setIsOpen(false);
+        case "Enter":
+          return handleSelect(options[activeIndex]);
         default:
           break;
       }
@@ -29,7 +35,7 @@ function Listbox({ options, label }) {
       window.addEventListener("keydown", handleKeyDown);
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, options.length]);
+  }, [isOpen, options, activeIndex]);
 
   return (
     <div className="lb">
@@ -52,12 +58,15 @@ function Listbox({ options, label }) {
         {isOpen &&
           options.map((item, index) => {
             const isActive = activeIndex === index;
+            const isSelected = selected === item;
             return (
               <li
                 key={"item" + index}
                 id={"item" + index}
                 role="option"
+                aria-selected={isSelected}
                 onMouseOver={() => setActiveIndex(index)}
+                onClick={() => handleSelect(item)}
                 className="lb__listItem"
                 style={{ backgroundColor: isActive && "hsl(220, 20%, 94%)" }}
               >
