@@ -1,9 +1,9 @@
 import React from "react";
 
-function Listbox({ items, onChange }) {
+function Listbox({ options, onChange }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [selected, setSelected] = React.useState(items[0]);
+  const [selected, setSelected] = React.useState(options[0]);
 
   const buttonRef = React.useRef();
   const listRef = React.useRef();
@@ -26,15 +26,15 @@ function Listbox({ items, onChange }) {
   function handleKeyDown(event) {
     switch (event.key) {
       case "ArrowDown":
-        return setCurrentIndex(prev => (prev + 1) % items.length);
+        return setCurrentIndex(prev => (prev + 1) % options.length);
       case "ArrowUp":
         return setCurrentIndex(
-          prev => (prev - 1 + items.length) % items.length
+          prev => (prev - 1 + options.length) % options.length
         );
       case "Escape":
         return close();
       case "Enter":
-        return handleSelect(items[currentIndex]);
+        return handleSelect(options[currentIndex]);
       default:
         return;
     }
@@ -82,17 +82,16 @@ function Listbox({ items, onChange }) {
         tabIndex="0"
         ref={listRef}
         onBlur={close}
-        hidden={!isOpen}
       >
         {isOpen &&
-          items.map((item, index) => {
-            const isSelected = selected === item;
+          options.map((option, index) => {
+            const isSelected = selected === option;
             const isHighlighted = currentIndex === index;
             return (
               <li
-                key={"item" + index}
-                id={"item" + index}
-                onClick={() => handleSelect(item)}
+                key={"option" + index}
+                id={"option" + index}
+                onClick={() => handleSelect(option)}
                 onMouseEnter={() => setCurrentIndex(index)}
                 className="lb__listItem"
                 role="option"
@@ -101,7 +100,7 @@ function Listbox({ items, onChange }) {
                   backgroundColor: isHighlighted && "hsl(220, 20%, 94%)",
                 }}
               >
-                {item}
+                {option}
                 {isSelected && (
                   <span className="lb__icon" aria-hidden="true">
                     ✔︎

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./global.css";
 import "./listbox.css";
-import Combobox from "./solutions/final";
+import Listbox from "./solutions/final";
 
 const fruit = [
   "apple",
@@ -10,16 +10,14 @@ const fruit = [
   "banana",
   "kumquat",
   "orange",
-  "kiwi",
   "blackberry",
-  "blueberry",
   "strawberry",
-  "dragonfruitnjadfknmfadnjkdsfnjks",
+  "dragonfruit",
   "durian",
 ];
 
 function App() {
-  return <Combobox items={fruit} onChange={item => console.log(item)} />;
+  return <Listbox options={fruit} />;
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
