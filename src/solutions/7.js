@@ -46,7 +46,6 @@ function Listbox({ options, label }) {
     } else {
       buttonRef.current.focus();
     }
-    console.log("focused element: ", document.activeElement.className);
   }, [isOpen]);
 
   return (

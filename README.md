@@ -25,6 +25,12 @@ A listbox is similar to an HTML `<select>`. We'll be reproducing as much of the 
 - [ ] I can close the popup with the escape key
   - The button should be focused
 
+## Part 0: setup
+
+1. Clone this repo
+1. `cd` into it and run `npm install`
+1. Run `npm start` and it should automatically open in your browser
+
 ## Part 1: initial HTML structure
 
 We'll start by defining our component API. For now lets keep it simple and say that we want a `Listbox` component that takes an array of `options` to render.
@@ -77,6 +83,8 @@ Our button needs a label. Right now a user has no idea what to do with this UI e
 ### Task
 
 Add a `label` prop to your component. We need to render the this string inside a `<div>` element above the button. We can then associate it with the button using `aria-labelledBy`.
+
+Don't forget to edit `src/index.js` to pass a `label` prop to your component.
 
 ![](/screenshots/2.png)
 
@@ -177,10 +185,18 @@ You can focus a DOM node you have a ref to with `nodeRef.current.focus()`.
 
 We've got a very functional listbox implementation now. There's one more nice feature we could add to help users: clicking outside the listbox should close it.
 
-Since the listbox is always focused when open we don't have to mess around putting click handlers on the window. We can listen for the `blur` event on the listbox that will fire when it loses focus (when the user tabs/clicks somewhere else).
+Since the listbox is always focused when open we don't have to mess around putting click handlers on the window. We can use an `onBlur` handler on the listbox that will fire when it loses focus (when the user tabs/clicks somewhere else).
 
 ### Task
 
 Make sure the listbox closes when the user clicks outside of it. The button should continue to receive focus when the listbox closes.
 
 ![](/screenshots/7.gif)
+
+## Bonus stuff
+
+It would be nice to have a visual indicator inside the button to show that is is exandable (and whether it is expanded). Usually a chevron (triangle) is used to communicate this.
+
+You could also add something to indicate which option is selected (some browsers use a checkmark).
+
+Note that in both cases we are communicating _visually_ what is already being communicated to the browser and assistive technologies with `aria-expanded` and `aria-selected`.
