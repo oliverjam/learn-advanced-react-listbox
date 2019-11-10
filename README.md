@@ -6,8 +6,7 @@ We're going to learn some more advanced React concepts whilst building an access
 
 1. Modelling complex interactions with React state
 1. Following the ARIA spec and using ARIA attributes
-1. Use the "compound component" pattern to create a more flexible component
-1. Share internal component state with React context
+1. Managing DOM focus with React refs
 
 ## Listbox guidelines
 
