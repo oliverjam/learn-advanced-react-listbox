@@ -25,7 +25,7 @@ A listbox is similar to an HTML `<select>`. We'll be reproducing as much of the 
 - [ ] I can close the popup with the escape key
   - The button should be focused
 
-## Part One
+## Part 1
 
 We'll start by defining our component API. For now lets keep it simple and say that we want a `Listbox` component that takes an array of `options` to render.
 
@@ -70,4 +70,26 @@ You should see something like this when you're done:
 
 ![](/screenshots/1.png)
 
-## Part Two
+## Part 2
+
+Our button needs a label. Right now a user has no idea what to do with this UI element, as the button's text content is just the selected item.
+
+### Task
+
+Add a `label` prop to your component. We need to render the this string inside a `<div>` element above the button. We can then associate it with the button using `aria-labelledBy`.
+
+![](/screenshots/2.png)
+
+## Part 3
+
+Our `listbox` should be a popup that only appears when the user clicks the button. We'll need some React state to keep track of whether it's open or closed. We should also communicate whether the popup is open or not using the `aria-expanded` attribute on the button.
+
+**Note**: since our button has declared that is has a listbox popup (with `aria-haspopup="listbox"`) the `listbox` must always be in the DOM. We can conditionally render its children.
+
+### Task
+
+Edit your component so that the options appear and disappear when the button is clicked.
+
+![](/screenshots/3.gif)
+
+## Part 4

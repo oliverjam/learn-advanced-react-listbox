@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./global.css";
 import "./listbox.css";
-import Listbox from "./solutions/final";
+import Listbox from "./solutions/3";
 
 const fruit = [
   "apple",
@@ -17,7 +17,7 @@ const fruit = [
 ];
 
 function App() {
-  return <Listbox options={fruit} />;
+  return <Listbox options={fruit} label="Choose your fruit" />;
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
