@@ -212,6 +212,8 @@ Let's mirror the native API of form inputs and add an `onChange` prop that we'll
 
 Pass an `onChange` function as a prop in `src/index.js`. Edit your component to call this function with the selected option whenever the user makes a choice.
 
+![](/screenshots/4.gif)
+
 ## Bonus stuff
 
 It would be nice to have a visual indicator inside the button to show that is is exandable (and whether it is expanded). Usually a chevron (triangle) is used to communicate this.
@@ -219,5 +221,3 @@ It would be nice to have a visual indicator inside the button to show that is is
 You could also add something to indicate which option is selected (some browsers use a checkmark).
 
 Note that in both cases we are communicating _visually_ what is already being communicated to the browser and assistive technologies with `aria-expanded` and `aria-selected`.
-
-ONCHANGE!111111!!!
