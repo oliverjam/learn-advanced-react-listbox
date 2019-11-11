@@ -83,7 +83,7 @@ Our button needs a label. Right now a user has no idea what to do with this UI e
 
 ### Task
 
-Add a `label` prop to your component. We need to render the this string inside a `<div>` element above the button. We can then associate it with the button using `aria-labelledBy`.
+Add a `label` prop to your component. We need to render this string inside a `<div>` element above the button. We can then associate it with the button using `aria-labelledBy`.
 
 Don't forget to edit `src/index.js` to pass a `label` prop to your component.
 
@@ -93,7 +93,7 @@ Don't forget to edit `src/index.js` to pass a `label` prop to your component.
 
 Our `listbox` should be a popup that only appears when the user clicks the button. We'll need some React state to keep track of whether it's open or closed. We should also communicate whether the popup is open or not using the `aria-expanded` attribute on the button.
 
-**Note**: since our button has declared that is has a listbox popup (with `aria-haspopup="listbox"`) the `listbox` must always be in the DOM. We can conditionally render its children.
+**Note**: since our button has declared that it has a listbox popup (with `aria-haspopup="listbox"`) the `listbox` must always be in the DOM. We can conditionally render its children.
 
 ### Task
 
@@ -103,7 +103,7 @@ Edit your component so that the options appear and disappear when the button is 
 
 ## Part 4: managing focus
 
-You may have noticed an ESLint warning on the listbox. Elements that use the `aria-activedescendant` attribute must be focusable. We need to ensure that focus moves onto the listbox when it is open, and moves back to the button when it is closed.
+We need to ensure that focus moves onto the listbox when it is open, and moves back to the button when it is closed. This will ensure assistive technology users always know where they are.
 
 ### Refs and the DOM
 
@@ -146,7 +146,7 @@ We'll need to keep track of the current index in state so we know which option i
 
 ### Task
 
-Add an `onMouseOver` event handler to each option that updates the current active index in state. The active option should be communicated with the `aria-activedescendant` attribute on the listbox. This should be set to the ID of the active element. The active element should also have a different background colour for visual users.
+Add an `onMouseOver` event handler to each option that updates the current active index in state. The active option should be communicated to the browser with the [`aria-activedescendant`](https://www.w3.org/TR/wai-aria/#aria-activedescendant) attribute on the listbox element. This should be set to the ID of the active option element. The active element should also have a different background colour for visual users.
 
 ![](/screenshots/5.gif)
 
@@ -156,7 +156,7 @@ Lots of users don't or can't use a mouse. So we should also implement keyboard c
 
 ### Task
 
-Add a `"keyDown"` event handler to the listbox element. This should increment the active index on `ArrowDown`, decrement it on `ArrowUp` and close the popup on `Escape`. It shouldn't do anything if the popup is closed.
+Add a `keyDown` event handler to the listbox element. This should increment the active index on `ArrowDown`, decrement it on `ArrowUp` and close the popup on `Escape`. It shouldn't do anything if the popup is closed.
 
 <details>
 <summary>Click for a hint:</summary>
@@ -188,7 +188,7 @@ Since the listbox is always focused when open we don't have to mess around putti
 
 ### Task
 
-Make sure the listbox closes when the user clicks outside of it. The button should continue to receive focus when the listbox closes.
+Make sure the listbox closes when the user clicks outside of it.
 
 ![](/screenshots/7.gif)
 
@@ -206,13 +206,13 @@ Let's mirror the native API of form inputs and add an `onChange` prop that we'll
 />
 ```
 
-### Task
+### Task
 
 Pass an `onChange` function as a prop in `src/index.js`. Edit your component to call this function with the selected option whenever the user makes a choice.
 
 ![](/screenshots/4.gif)
 
-## Bonus stuff
+## Bonus stuff
 
 It would be nice to have a visual indicator inside the button to show that is is exandable (and whether it is expanded). Usually a chevron (triangle) is used to communicate this.
 
