@@ -44,6 +44,8 @@ function Listbox({ options, label, onChange }) {
   }
 
   // onChange shouldn't be called on the first render
+  // refs are for more than just DOM nodes:
+  // https://reactjs.org/docs/hooks-faq.html#is-there-something-like-instance-variables
   const hasMounted = React.useRef(false);
 
   React.useEffect(() => {

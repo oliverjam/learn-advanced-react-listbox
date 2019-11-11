@@ -113,7 +113,7 @@ You _could_ use `document.querySelector` to access them, but that isn't very "Re
 
 Luckily React gives us a way to do this: the `ref`. This is a special property you can set on a JSX element that binds the underlying DOM node to a variable.
 
-We pair this with a special hook (`useRef`) that creates a "bucket" for us to store mutable values in. It will keep track of our ref and let us access it via the `.current property`:
+We pair this with the [`useRef`](https://reactjs.org/docs/hooks-reference.html#useref) hook. This creates a "bucket" for us to store mutable values in. It will keep track of our ref and let us access it via the `.current` property:
 
 ```jsx
 function Test() {
