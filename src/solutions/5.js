@@ -6,30 +6,20 @@ function Listbox({ options, label }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
+  const buttonRef = React.useRef();
+  const listRef = React.useRef();
+
   function toggleOpen() {
     setIsOpen(wasOpen => !wasOpen);
   }
 
   React.useEffect(() => {
-    function handleKeyDown(event) {
-      switch (event.key) {
-        case "ArrowDown":
-          return setActiveIndex(oldIndex => (oldIndex + 1) % options.length);
-        case "ArrowUp":
-          return setActiveIndex(
-            oldIndex => (oldIndex - 1 + options.length) % options.length
-          );
-        case "Escape":
-          return setIsOpen(false);
-        default:
-          break;
-      }
-    }
     if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
+      listRef.current.focus();
+    } else {
+      buttonRef.current.focus();
     }
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, options.length]);
+  }, [isOpen]);
 
   return (
     <div className="lb">
@@ -40,14 +30,17 @@ function Listbox({ options, label }) {
         aria-haspopup="listbox"
         aria-labelledby="lb-label"
         onClick={toggleOpen}
+        ref={buttonRef}
         className="lb__button"
       >
         {selected}
       </button>
       <ul
         role="listbox"
-        className="lb__list"
+        tabIndex="0"
+        ref={listRef}
         aria-activedescendant={"option" + activeIndex}
+        className="lb__list"
       >
         {isOpen &&
           options.map((item, index) => {
@@ -58,8 +51,8 @@ function Listbox({ options, label }) {
                 id={"option" + index}
                 role="option"
                 onMouseOver={() => setActiveIndex(index)}
-                className="lb__listItem"
                 style={{ backgroundColor: isActive && "hsl(220, 20%, 94%)" }}
+                className="lb__listItem"
               >
                 {item}
               </li>
