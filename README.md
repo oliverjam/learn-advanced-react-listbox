@@ -194,6 +194,24 @@ Make sure the listbox closes when the user clicks outside of it. The button shou
 
 ![](/screenshots/7.gif)
 
+## Part 9: `onChange` handler
+
+Our component works, but its state is all internal. The rest of our application has no way to find out what choice a user has made.
+
+Let's mirror the native API of form inputs and add an `onChange` prop that we'll call with the updated value whenever the user selects an option. That way a parent component can subscribe to updates and use them like this:
+
+```jsx
+<Listbox
+  options={["apple", "orange", "banana"]}
+  label="Choose your fruit"
+  onChange={selected => console.log(selected)}
+/>
+```
+
+### Task
+
+Pass an `onChange` function as a prop in `src/index.js`. Edit your component to call this function with the selected option whenever the user makes a choice.
+
 ## Bonus stuff
 
 It would be nice to have a visual indicator inside the button to show that is is exandable (and whether it is expanded). Usually a chevron (triangle) is used to communicate this.
@@ -201,3 +219,5 @@ It would be nice to have a visual indicator inside the button to show that is is
 You could also add something to indicate which option is selected (some browsers use a checkmark).
 
 Note that in both cases we are communicating _visually_ what is already being communicated to the browser and assistive technologies with `aria-expanded` and `aria-selected`.
+
+ONCHANGE!111111!!!
