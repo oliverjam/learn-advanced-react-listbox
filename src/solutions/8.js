@@ -69,11 +69,13 @@ function Listbox({ options, label }) {
         {isOpen &&
           options.map((item, index) => {
             const isActive = activeIndex === index;
+            const isSelected = selected === item;
             return (
               <li
                 key={"option" + index}
                 id={"option" + index}
                 role="option"
+                aria-selected={isSelected}
                 onMouseOver={() => setActiveIndex(index)}
                 onClick={() => handleSelect(item)}
                 style={{ backgroundColor: isActive && "hsl(220, 20%, 94%)" }}
